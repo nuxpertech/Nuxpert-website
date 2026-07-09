@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NXO — Nuxpert Executive Office | Virtual CTO for SMEs</title>
+  <meta name="description" content="NXO is Nuxpert's Virtual CTO service — an executive technology partner delivering strategic leadership, digital transformation, vendor management, and technology governance for growing businesses.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:        #06101D;
+  --navy-mid:    #0B1825;
+  --navy-card:   rgba(10,20,38,0.75);
+  --cyan:        #F59E0B;
+  --cyan-glow:   rgba(245,158,11,0.25);
+  --cyan-dim:    rgba(245,158,11,0.09);
+  --violet:      #2563EB;
+  --violet-dim:  rgba(37,99,235,0.12);
+  --gold:        #D97706;
+  --gold-lt:     #FBBF24;
+  --white:       #F0F6FF;
+  --gray:        #7B93B8;
+  --gray-dk:     #1C2E47;
+  --border:      rgba(245,158,11,0.14);
+  --border-s:    rgba(245,158,11,0.065);
+  --r:           12px;
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color:inherit; text-decoration:none; }
+img { max-width:100%; display:block; }
+button { cursor:pointer; font-family:inherit; }
+
+/* ═══════════════════════════════════════════════════════════
+   REUSABLE — copied 1:1 from the main site design system
+═══════════════════════════════════════════════════════════ */
+.eyebrow {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 3.5px; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 10px;
+}
+.rule {
+  width: 52px; height: 2px;
+  background: linear-gradient(90deg, #F59E0B, #2563EB);
+  border-radius: 2px; margin-bottom: 18px;
+}
+h2 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(1.9rem, 3.3vw, 2.75rem);
+  font-weight: 700; color: var(--white);
+  line-height: 1.12; margin-bottom: 14px;
+}
+h2 em { font-style:normal; color: var(--cyan); }
+.lead {
+  color: var(--gray); font-size: 0.97rem;
+  line-height: 1.85; max-width: 620px;
+  margin-bottom: 54px;
+}
+section { padding: 104px 5vw; position: relative; }
+
+/* ── TOP BAR ── */
+.topbar {
+  background: rgba(4,8,18,0.97);
+  border-bottom: 1px solid var(--border-s);
+  padding: 9px 5vw;
+  display: flex; align-items: center;
+  justify-content: flex-end; gap: 26px;
+  position: relative; z-index: 1001;
+}
+.tb-social { display:flex; align-items:center; gap:10px; }
+.tb-social-icon {
+  width:26px; height:26px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gray); font-size:12px;
+  border:1px solid var(--gray-dk); transition:all .25s;
+}
+.tb-social-icon:hover { color:var(--cyan); border-color:var(--cyan); }
+.tb-a {
+  display:flex; align-items:center; gap:7px;
+  color: var(--gray); font-size:12.5px;
+  font-weight:500; letter-spacing:0.2px;
+  transition: color .25s;
+}
+.tb-a:hover { color: var(--cyan); }
+.tb-a svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+.tb-sep { width:1px; height:13px; background:var(--gray-dk); }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top:0; z-index:1000;
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  background: rgba(7,16,31,0.86);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5vw; height: 78px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav-logo { display:flex; align-items:center; }
+.nav-logo img {
+  height: 64px; width:64px; object-fit:cover;
+  background: linear-gradient(135deg, #2A1A0A, #3D2410);
+  border-radius: 8px; padding: 4px 10px;
+  box-shadow: 0 0 0 1px rgba(184,114,46,0.35);
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+  transition: filter .3s, transform .3s;
+}
+.nav-logo img:hover { filter: brightness(1.2) contrast(1.05) drop-shadow(0 0 10px rgba(245,158,11,0.4)); transform: scale(1.03); }
+.nav-links { display:flex; align-items:center; gap:38px; list-style:none; }
+.nav-links a {
+  font-family:'Rajdhani',sans-serif; font-weight:600; font-size:13px;
+  letter-spacing:2px; text-transform:uppercase;
+  color: var(--gray); position:relative; transition: color .3s;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-5px; left:0; right:100%; height:1.5px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  transition: right .4s cubic-bezier(.4,0,.2,1);
+}
+.nav-links a:hover { color:var(--white); }
+.nav-links a:hover::after { right:0; }
+.nav-links a.current { color:var(--cyan); }
+.nav-links a.current::after { right:0; }
+.nav-cta {
+  display:flex; align-items:center; gap:7px;
+  background:transparent; border:1.5px solid var(--cyan); color:var(--cyan);
+  padding:9px 22px; border-radius:7px;
+  font-family:'Rajdhani',sans-serif; font-weight:700; font-size:12.5px;
+  letter-spacing:1.8px; text-transform:uppercase; transition:all .3s;
+}
+.nav-cta:hover { background:var(--cyan); color:var(--navy); box-shadow: 0 0 28px rgba(245,158,11,.42); }
+.hbg { display:none; flex-direction:column; gap:5px; background:none; border:none; padding:4px; }
+.hbg span { display:block; width:24px; height:2px; background:var(--white); border-radius:2px; transition:all .3s; }
+
+/* ── BUTTONS ── */
+.btn-primary {
+  display:inline-flex; align-items:center; gap:8px;
+  background:linear-gradient(135deg,#F59E0B,#D97706);
+  color:var(--navy); padding:14px 36px; border-radius:8px;
+  font-family:'Rajdhani',sans-serif; font-weight:700;
+  font-size:14px; letter-spacing:1.6px; text-transform:uppercase; border:none;
+  transition:all .3s; box-shadow:0 4px 28px rgba(245,158,11,0.4);
+}
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 44px rgba(245,158,11,0.6); }
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:8px;
+  background:transparent; color:var(--white);
+  padding:14px 36px; border-radius:8px; border:1.5px solid var(--gray-dk);
+  font-family:'Rajdhani',sans-serif; font-weight:700; font-size:14px;
+  letter-spacing:1.6px; text-transform:uppercase; transition:all .3s;
+}
+.btn-ghost:hover { border-color:var(--violet); color:#BFDBFE; box-shadow:0 0 28px rgba(37,99,235,.25); }
+
+/* ── NXO HERO ── */
+#nxo-hero { position:relative; overflow:hidden; min-height:calc(100vh - 118px); display:flex; align-items:center; padding:0; }
+.nh-amb {
+  position:absolute; inset:0; z-index:0;
+  background:
+    radial-gradient(ellipse 70% 70% at 20% 60%, rgba(37,99,235,.12) 0%, transparent 65%),
+    radial-gradient(ellipse 58% 58% at 80% 36%, rgba(245,158,11,.09) 0%, transparent 62%);
+}
+.nh-inner {
+  position:relative; z-index:2;
+  display:grid; grid-template-columns:1.15fr 0.85fr; align-items:center;
+  width:100%; max-width:1440px; margin:0 auto; padding:80px 5vw; gap:52px;
+}
+.nh-badge {
+  display:inline-flex; align-items:center; gap:9px;
+  background:rgba(37,99,235,.1); border:1px solid rgba(37,99,235,.32);
+  border-radius:24px; padding:7px 18px 7px 13px;
+  font-family:'Rajdhani',sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:2.5px; text-transform:uppercase; color:#BFDBFE;
+  margin-bottom:28px; width:fit-content;
+}
+.badge-dot { width:7px; height:7px; border-radius:50%; background:var(--violet); animation:bdgPulse 2.2s ease-in-out infinite; }
+@keyframes bdgPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(.55); } }
+h1 {
+  font-family:'Rajdhani',sans-serif; font-size:clamp(2.1rem,3.8vw,3.5rem);
+  font-weight:700; line-height:1.08; letter-spacing:-.2px; color:var(--white); margin-bottom:16px;
+}
+h1 em { font-style:normal; color:var(--cyan); text-shadow:0 0 30px rgba(245,158,11,.4); }
+.nh-sub {
+  font-size:1.05rem; color:var(--gray); max-width:540px; line-height:1.88; margin-bottom:36px;
+}
+.nh-ctas { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:8px; }
+
+/* ── HERO GRAPHIC: hex constellation (no image asset needed) ── */
+.nh-graphic { display:flex; align-items:center; justify-content:center; position:relative; height:420px; }
+.nh-glow {
+  position:absolute; width:70%; height:70%;
+  background:radial-gradient(ellipse, rgba(245,158,11,.16) 0%, rgba(37,99,235,.1) 42%, transparent 72%);
+  border-radius:50%; animation: glowPulse 5s ease-in-out infinite;
+}
+@keyframes glowPulse { 0%,100% { transform:scale(1); opacity:1; } 50% { transform:scale(1.1); opacity:.7; } }
+.orb { position:absolute; border-radius:50%; border:1px solid transparent; pointer-events:none; }
+.orb-1 { inset:6%; border-top-color: rgba(245,158,11,.28); border-right-color: rgba(245,158,11,.08); animation: orbSpin 16s linear infinite; }
+.orb-2 { inset:-4%; border-bottom-color: rgba(37,99,235,.24); border-left-color: rgba(37,99,235,.08); animation: orbSpin 24s linear infinite reverse; }
+@keyframes orbSpin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+.nh-svg { position:relative; z-index:2; width:100%; max-width:380px; height:auto; }
+
+/* ── TRUST STRIP ── */
+.trust-band {
+  background:var(--navy-mid); border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  padding:26px 5vw; display:flex; align-items:center; justify-content:center; gap:44px; flex-wrap:wrap;
+}
+.t-item { display:flex; align-items:center; gap:10px; color:var(--gray); font-size:12.5px; font-weight:500; letter-spacing:.3px; }
+.t-item svg { width:17px; height:17px; stroke:var(--cyan); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+.t-sep { width:1px; height:22px; background:var(--gray-dk); }
+
+/* ── SVC GRID (reused for compare cards + 3-tile grids) ── */
+.svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5px; background:var(--border); border:1px solid var(--border); border-radius:18px; overflow:hidden; }
+.svc { background:rgba(9,16,32,.94); padding:40px 32px; position:relative; overflow:hidden; cursor:default; transition:all .42s cubic-bezier(.4,0,.2,1); }
+.svc::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--cyan),var(--violet)); transform:scaleX(0); transform-origin:left; transition:transform .42s cubic-bezier(.4,0,.2,1); }
+.svc::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(245,158,11,.06) 0%,rgba(37,99,235,.05) 100%); opacity:0; transition:opacity .42s; }
+.svc:hover { background:rgba(12,22,44,.99); transform:scale(1.018); z-index:1; box-shadow:0 0 70px rgba(0,0,0,.65), 0 0 0 1px rgba(245,158,11,.14); }
+.svc:hover::before { opacity:1; }
+.svc:hover::after { transform:scaleX(1); }
+.svc > * { position:relative; z-index:2; }
+.svc-icon { width:52px; height:52px; border-radius:11px; background:rgba(245,158,11,.055); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; margin-bottom:22px; transition:all .42s; }
+.svc:hover .svc-icon { border-color:var(--cyan); background:rgba(245,158,11,.11); box-shadow:0 0 24px rgba(245,158,11,.28); }
+.svc-pill { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); opacity:.72; margin-bottom:9px; }
+.svc-title { font-family:'Rajdhani',sans-serif; font-size:1.14rem; font-weight:700; color:var(--white); margin-bottom:11px; }
+.svc-desc { font-size:.87rem; color:var(--gray); line-height:1.78; margin-bottom:16px; }
+.svc-out { list-style:none; display:flex; flex-direction:column; gap:9px; }
+.svc-out li { display:flex; align-items:flex-start; gap:9px; font-size:.85rem; color:var(--gray); font-weight:500; line-height:1.6; }
+.svc-out.is li { color:rgba(245,158,11,.9); }
+.svc-out.is li::before { content:'✓'; color:var(--cyan); font-weight:700; flex-shrink:0; }
+.svc-out.isnot li::before { content:'✕'; color:var(--gray); opacity:.6; flex-shrink:0; }
+
+/* ── PAIN POINT QUOTE GRID ── */
+.pain-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.pain-card {
+  padding:30px 26px 26px; border:1px solid var(--border); border-radius:var(--r);
+  background:rgba(10,20,38,0.7); backdrop-filter:blur(10px); transition:all .35s;
+}
+.pain-card:hover { border-color:rgba(245,158,11,0.32); background:rgba(15,28,52,0.9); transform:translateY(-4px); box-shadow:0 12px 36px rgba(245,158,11,0.08); }
+.pain-q { font-family:'Rajdhani',sans-serif; font-size:2.4rem; font-weight:700; color:var(--cyan); opacity:.55; line-height:1; margin-bottom:6px; }
+.pain-text { font-size:.95rem; color:var(--white); line-height:1.7; font-style:italic; }
+
+/* ── FOUR PILLARS OVERVIEW (layers pattern) ── */
+.layers { display:grid; grid-template-columns:repeat(4,1fr); position:relative; }
+.layers::before { content:''; position:absolute; top:50%; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent 0%, #F59E0B 20%, #2563EB 50%, #FBBF24 80%, transparent 100%); opacity:.18; z-index:0; pointer-events:none; }
+.layer { position:relative; z-index:1; padding:36px 26px; border:1px solid var(--border); border-right:none; background:var(--navy-card); backdrop-filter:blur(10px); transition:all .42s; }
+.layer:last-child { border-right:1px solid var(--border); }
+.layer:hover { background:rgba(12,23,40,.96); transform:translateY(-8px); box-shadow:0 24px 52px rgba(0,0,0,.45), 0 0 0 1px rgba(245,158,11,.2), 0 0 40px rgba(245,158,11,.07); z-index:2; }
+.l-num { font-family:'Rajdhani',sans-serif; font-size:10px; font-weight:700; letter-spacing:2.8px; color:var(--lc,var(--cyan)); opacity:.6; margin-bottom:18px; }
+.hex-ico { width:54px; height:60px; position:relative; display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
+.hex-ico svg.bg { position:absolute; inset:0; width:100%; height:100%; }
+.hex-ico .inn { position:relative; z-index:2; }
+.l-title { font-family:'Rajdhani',sans-serif; font-size:1.06rem; font-weight:700; color:var(--white); margin-bottom:10px; }
+.l-desc { font-size:.85rem; color:var(--gray); line-height:1.78; }
+
+/* ── ACCORDION (pillar detail) ── */
+.acc { display:flex; flex-direction:column; gap:3px; }
+.acc-item { border:1px solid var(--border); border-radius:10px; overflow:hidden; background:rgba(10,20,38,0.55); transition:border-color .3s; }
+.acc-item.open { border-color:rgba(245,158,11,.3); }
+.acc-hd { display:flex; align-items:center; justify-content:space-between; padding:20px 26px; cursor:pointer; transition:background .3s; }
+.acc-hd:hover { background:rgba(245,158,11,.03); }
+.acc-item.open .acc-hd { background:rgba(245,158,11,.045); }
+.acc-hd-l { display:flex; align-items:center; gap:15px; }
+.acc-ico { width:34px; height:34px; border-radius:9px; background:rgba(245,158,11,.06); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.acc-item.open .acc-ico { border-color:var(--cyan); background:rgba(245,158,11,.12); }
+.acc-ttl { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.02rem; color:var(--white); transition:color .3s; }
+.acc-item.open .acc-ttl { color:var(--cyan); }
+.acc-arrow { color:var(--gray); transition:transform .35s,color .3s; flex-shrink:0; }
+.acc-item.open .acc-arrow { transform:rotate(180deg); color:var(--cyan); }
+.acc-bd { max-height:0; overflow:hidden; transition:max-height .5s cubic-bezier(.4,0,.2,1); }
+.acc-item.open .acc-bd { max-height:220px; }
+.acc-body { padding:0 26px 24px 75px; }
+.acc-tags { display:flex; flex-wrap:wrap; gap:9px; }
+.acc-tag { font-size:.78rem; color:var(--gray); background:rgba(245,158,11,.05); border:1px solid var(--border); border-radius:20px; padding:6px 14px; }
+
+/* ── VAL-STYLE NUMBERED CARDS (reporting cadence) ── */
+.val-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5px; background:var(--border); border:1px solid var(--border); border-radius:18px; overflow:hidden; }
+.val-card { background:rgba(10,20,38,0.92); padding:30px 24px; position:relative; overflow:hidden; transition:all .4s cubic-bezier(.4,0,.2,1); cursor:default; }
+.val-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--cyan), var(--violet)); transform:scaleX(0); transform-origin:left; transition:transform .4s; }
+.val-card:hover { background:rgba(15,28,52,0.98); transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,0.5); z-index:1; }
+.val-card:hover::before { transform:scaleX(1); }
+.val-num { font-family:'Rajdhani',sans-serif; font-size:11px; font-weight:700; letter-spacing:2px; color:var(--cyan); opacity:0.6; margin-bottom:14px; }
+.val-card-icon { width:44px; height:44px; border-radius:10px; background:rgba(245,158,11,0.07); border:1px solid rgba(245,158,11,0.2); display:flex; align-items:center; justify-content:center; margin-bottom:16px; transition:all .4s; }
+.val-card:hover .val-card-icon { background:rgba(245,158,11,0.14); border-color:rgba(245,158,11,0.5); box-shadow:0 0 20px rgba(245,158,11,0.2); }
+.val-card-icon svg { width:20px; height:20px; stroke:var(--cyan); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.val-card-title { font-family:'Rajdhani',sans-serif; font-size:1rem; font-weight:700; color:var(--white); margin-bottom:9px; }
+.val-card-text { font-size:0.82rem; color:var(--gray); line-height:1.72; }
+
+/* ── PRICING TIERS ── */
+.tier-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:stretch; }
+.tier-card {
+  display:flex; flex-direction:column;
+  padding:38px 30px; border:1px solid var(--border); border-radius:16px;
+  background:rgba(10,20,38,0.7); backdrop-filter:blur(10px); transition:all .35s; position:relative;
+}
+.tier-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(0,0,0,.4); }
+.tier-card.featured { border:2px solid var(--cyan); background:rgba(15,28,52,0.85); }
+.tier-badge {
+  position:absolute; top:-13px; left:30px;
+  background:linear-gradient(135deg,#F59E0B,#D97706); color:var(--navy);
+  font-family:'Rajdhani',sans-serif; font-weight:700; font-size:10.5px;
+  letter-spacing:1.6px; text-transform:uppercase; padding:5px 14px; border-radius:20px;
+}
+.tier-name { font-family:'Rajdhani',sans-serif; font-size:1.3rem; font-weight:700; color:var(--white); margin-bottom:10px; }
+.tier-for { font-size:.85rem; color:var(--gray); line-height:1.7; margin-bottom:24px; min-height:64px; }
+.tier-feats { list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:32px; flex-grow:1; }
+.tier-feats li { display:flex; align-items:flex-start; gap:9px; font-size:.87rem; color:var(--gray); line-height:1.6; }
+.tier-feats li::before { content:'✓'; color:var(--cyan); font-weight:700; flex-shrink:0; }
+.tier-card .btn-ghost, .tier-card .btn-primary { justify-content:center; width:100%; }
+
+/* ── LANGUAGE SHIFT ROWS ── */
+.lang-list { display:flex; flex-direction:column; }
+.lang-row { display:grid; grid-template-columns:1fr 44px 1fr; align-items:center; padding:22px 8px; border-bottom:1px solid var(--border); gap:16px; }
+.lang-row:last-child { border-bottom:none; }
+.lang-old { color:var(--gray); font-size:.95rem; text-decoration:line-through; text-decoration-color:rgba(123,147,184,.4); text-align:right; }
+.lang-arrow { display:flex; align-items:center; justify-content:center; color:var(--cyan); }
+.lang-arrow svg { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.lang-new { color:var(--white); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.02rem; }
+
+/* ── CALLOUT BANNER (reused from nexus-eq) ── */
+.nxo-note {
+  margin-top:44px; padding:36px 44px;
+  background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(245,158,11,.05));
+  border:1px solid var(--border); border-radius:18px; text-align:center;
+}
+.nxo-note p {
+  font-family:'Rajdhani',sans-serif; font-size:clamp(1rem,2.1vw,1.2rem);
+  font-weight:600; color:var(--white); line-height:1.75;
+}
+.nxo-note .sub { margin-top:10px; font-size:.87rem; color:var(--gray); font-family:'DM Sans',sans-serif; font-weight:400; }
+
+/* ── CLOSING CTA ── */
+#nxo-closing { background:linear-gradient(180deg,var(--navy-mid) 0%,var(--navy) 100%); text-align:center; }
+#nxo-closing .eyebrow, #nxo-closing .rule { margin-left:auto; margin-right:auto; }
+#nxo-closing .lead { margin-left:auto; margin-right:auto; }
+
+/* ── FOOTER ── */
+footer { background:var(--navy-mid); border-top:1px solid var(--border); padding:70px 5vw 0; }
+.footer-top { display:grid; grid-template-columns:1.3fr 1fr 1.2fr; gap:60px; padding-bottom:56px; border-bottom:1px solid var(--border); }
+.footer-brand img { height:52px; width:52px; object-fit:cover; border-radius:8px; margin-bottom:16px; background:linear-gradient(135deg,#2A1A0A,#3D2410); padding:3px 8px; }
+.footer-tagline { font-family:'Rajdhani',sans-serif; font-weight:600; color:var(--cyan); font-size:.92rem; margin-bottom:10px; letter-spacing:.3px; }
+.footer-brand p { font-size:.84rem; color:var(--gray); line-height:1.78; max-width:285px; }
+.fc h4 { font-family:'Rajdhani',sans-serif; font-size:.94rem; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; color:var(--white); margin-bottom:20px; }
+.fc ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.fc a { font-size:.86rem; color:rgba(123,147,184,.72); transition:color .25s; }
+.fc a:hover { color:var(--cyan); }
+.fc-contact { display:flex; flex-direction:column; gap:13px; }
+.fcc { display:flex; align-items:center; gap:10px; font-size:.86rem; color:rgba(123,147,184,.85); transition:color .25s; }
+.fcc:hover { color:var(--cyan); }
+.fcc svg { width:15px; height:15px; stroke:var(--cyan); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+.social-label { font-size:.78rem; color:var(--gray); letter-spacing:1px; text-transform:uppercase; }
+.social-row { display:flex; gap:10px; flex-wrap:wrap; }
+.social-icon { display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid var(--gray-dk); color:var(--gray); transition:all .3s; position:relative; }
+.social-icon:hover { transform:translateY(-3px); }
+.social-icon.si-ig:hover { border-color:#0A66C2; color:#0A66C2; background:rgba(10,102,194,0.1); box-shadow:0 8px 24px rgba(10,102,194,0.2); }
+.social-icon.si-yt:hover { border-color:#FF0000; color:#FF0000; background:rgba(255,0,0,0.1); box-shadow:0 8px 24px rgba(255,0,0,0.2); }
+.social-icon.si-x:hover  { border-color:#fff; color:#fff; background:rgba(255,255,255,0.08); box-shadow:0 8px 24px rgba(255,255,255,0.1); }
+.footer-bot { display:flex; align-items:center; justify-content:space-between; padding:26px 0; flex-wrap:wrap; gap:10px; }
+.footer-bot p { font-size:.79rem; color:rgba(123,147,184,.4); }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.reveal.in { opacity:1; transform:none; }
+.d1 { transition-delay:.1s; } .d2 { transition-delay:.2s; } .d3 { transition-delay:.3s; } .d4 { transition-delay:.4s; }
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float { position:fixed; bottom:26px; right:26px; z-index:999; display:flex; align-items:center; gap:12px; }
+.wa-btn { width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 24px rgba(37,211,102,.45); transition:transform .3s; }
+.wa-btn svg { width:28px; height:28px; fill:#fff; }
+.wa-float:hover .wa-btn { transform:scale(1.08); }
+.wa-label { background:var(--navy-mid); border:1px solid var(--border); color:var(--white); font-size:.82rem; padding:8px 14px; border-radius:8px; opacity:0; transform:translateX(8px); transition:all .3s; white-space:nowrap; }
+.wa-float:hover .wa-label { opacity:1; transform:translateX(0); }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+@media(max-width:1100px) {
+  .nh-inner { grid-template-columns:1fr; text-align:center; padding:60px 5vw; }
+  .nh-graphic { order:1; height:280px; }
+  .nh-badge, .nh-sub { margin-left:auto; margin-right:auto; }
+  .nh-ctas { justify-content:center; }
+  .pain-grid { grid-template-columns:repeat(2,1fr); }
+  .tier-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:900px) {
+  .layers { grid-template-columns:repeat(2,1fr); }
+  .layer { border-right:1px solid var(--border); border-bottom:none; }
+  .layer:nth-child(odd) { border-right:none; }
+  .layer:nth-child(3),.layer:nth-child(4) { border-top:1px solid var(--border); }
+  .svc-grid { grid-template-columns:1fr; }
+  .val-grid { grid-template-columns:repeat(2,1fr); }
+  .footer-top { grid-template-columns:1fr 1fr; gap:40px; }
+}
+@media(max-width:768px) {
+  .hbg { display:flex; }
+  .nav-links {
+    display:none; position:absolute; top:78px; left:0; right:0; flex-direction:column;
+    background:rgba(7,16,31,.97); border-bottom:1px solid var(--border);
+    padding:20px 5vw 28px; gap:22px; backdrop-filter:blur(18px);
+  }
+  .nav-links.open { display:flex; }
+  .nav-links a { font-size:16px; }
+  .nav-cta { display:none; }
+  nav { position:relative; }
+  .layers { grid-template-columns:1fr; }
+  .layer { border-right:1px solid var(--border) !important; border-top:none !important; border-bottom:none; }
+  .layer:last-child { border-bottom:1px solid var(--border); }
+  .pain-grid { grid-template-columns:1fr; }
+  .val-grid { grid-template-columns:1fr; }
+  .tier-grid { grid-template-columns:1fr; }
+  .lang-row { grid-template-columns:1fr; text-align:center; gap:6px; }
+  .lang-old { text-align:center; }
+  .lang-arrow svg { transform:rotate(90deg); }
+  .footer-top { grid-template-columns:1fr; gap:36px; }
+  .footer-bot { flex-direction:column; align-items:flex-start; }
+  section { padding:70px 5vw; }
+}
+@media(max-width:480px) {
+  h1 { font-size:2.1rem; }
+  .trust-band { gap:16px; flex-direction:column; align-items:flex-start; padding:22px 5vw; }
+  .t-sep { display:none; }
+  .tier-badge { left:24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     TOP BAR
+══════════════════════════════════════════════════════ -->
+<div class="topbar">
+  <div class="tb-social">
+    <a href="https://www.linkedin.com/company/nuxpert-techbeez" class="tb-social-icon" target="_blank" rel="noopener noreferrer" aria-label="Nuxpert Tech Beez on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://www.youtube.com/@Nuxpert" class="tb-social-icon" target="_blank" rel="noopener noreferrer" aria-label="Nuxpert on YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://x.com/nuxpertTechbezz" class="tb-social-icon" target="_blank" rel="noopener noreferrer" aria-label="Nuxpert on X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+  </div>
+  <div class="tb-sep"></div>
+  <a href="tel:+919686369907" class="tb-a">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    +91 9686369907
+  </a>
+  <div class="tb-sep"></div>
+  <a href="mailto:info@nuxpert.com" class="tb-a">
+    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    info@nuxpert.com
+  </a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════════════ -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/nuxpert-logo.jpg" alt="Nuxpert Tech Beez — Strategic Tech Expertise. Securely Transforming Digital Success.">
+  </a>
+  <button class="hbg" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="nl">
+    <li><a href="index.html#hero">Home</a></li>
+    <li><a href="index.html#vision-section">Vision</a></li>
+    <li><a href="index.html#approach">Approach</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="nxo.html" class="current">NXO</a></li>
+    <li><a href="index.html#values">Values</a></li>
+    <li><a href="index.html#nexus">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    Contact Us
+  </a>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════ -->
+<section id="nxo-hero">
+  <div class="nh-amb"></div>
+  <div class="nh-inner">
+    <div class="nh-text">
+      <div class="nh-badge reveal">
+        <span class="badge-dot"></span>
+        NXO · Nuxpert Executive Office
+      </div>
+      <h1 class="reveal d1">Technology Leadership <em>Without Hiring a CTO</em></h1>
+      <p class="nh-sub reveal d2">
+        We become your executive technology partner, helping you make smarter IT decisions, accelerate digital transformation, optimize technology investments, and build scalable businesses.
+      </p>
+      <div class="nh-ctas reveal d3">
+        <a href="index.html#contact" class="btn-primary">Book a Strategy Call</a>
+        <a href="#nxo-model" class="btn-ghost">See How It Works</a>
+      </div>
+    </div>
+
+    <div class="nh-graphic reveal d2">
+      <div class="nh-glow"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <svg class="nh-svg" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="190,120 232,144 232,192 190,216 148,192 148,144" fill="rgba(245,158,11,.08)" stroke="#F59E0B" stroke-width="1.4"/>
+        <text x="190" y="174" text-anchor="middle" font-family="Rajdhani,sans-serif" font-size="17" font-weight="700" fill="#F0F6FF">NXO</text>
+        <line x1="190" y1="120" x2="190" y2="52" stroke="rgba(245,158,11,.35)" stroke-width="1.2"/>
+        <line x1="232" y1="144" x2="300" y2="104" stroke="rgba(37,99,235,.35)" stroke-width="1.2"/>
+        <line x1="232" y1="192" x2="300" y2="232" stroke="rgba(251,191,36,.35)" stroke-width="1.2"/>
+        <line x1="148" y1="192" x2="80" y2="232" stroke="rgba(245,158,11,.35)" stroke-width="1.2"/>
+        <line x1="148" y1="144" x2="80" y2="104" stroke="rgba(37,99,235,.35)" stroke-width="1.2"/>
+        <g>
+          <polygon points="190,30 213,43 213,69 190,82 167,69 167,43" fill="rgba(245,158,11,.06)" stroke="#F59E0B" stroke-width="1"/>
+          <text x="190" y="60" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#7B93B8">Strategy</text>
+        </g>
+        <g>
+          <polygon points="312,90 335,103 335,129 312,142 289,129 289,103" fill="rgba(37,99,235,.06)" stroke="#2563EB" stroke-width="1"/>
+          <text x="312" y="120" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#7B93B8">Transform</text>
+        </g>
+        <g>
+          <polygon points="312,218 335,231 335,257 312,270 289,257 289,231" fill="rgba(251,191,36,.06)" stroke="#FBBF24" stroke-width="1"/>
+          <text x="312" y="248" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#7B93B8">Vendors</text>
+        </g>
+        <g>
+          <polygon points="68,218 91,231 91,257 68,270 45,257 45,231" fill="rgba(245,158,11,.06)" stroke="#F59E0B" stroke-width="1"/>
+          <text x="68" y="248" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#7B93B8">PMO</text>
+        </g>
+        <g>
+          <polygon points="68,90 91,103 91,129 68,142 45,129 45,103" fill="rgba(37,99,235,.06)" stroke="#2563EB" stroke-width="1"/>
+          <text x="68" y="120" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#7B93B8">Governance</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="trust-band">
+  <div class="t-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Vendor-Neutral Advice</div>
+  <div class="t-sep"></div>
+  <div class="t-item reveal d1"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>Monthly Retainer, Not Hourly Billing</div>
+  <div class="t-sep"></div>
+  <div class="t-item reveal d2"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Board-Ready Reporting</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 1 — WHAT NXO IS (AND ISN'T)
+══════════════════════════════════════════════════════ -->
+<section id="nxo-definition">
+  <div class="eyebrow reveal">The Offering</div>
+  <div class="rule reveal d1"></div>
+  <h2 class="reveal d1">What <em>NXO</em> Is</h2>
+  <p class="lead reveal d2">
+    NXO stands for Nuxpert Executive Office — a Virtual CTO service built for SMEs who need executive-level
+    technology leadership without the cost, delay, or risk of a full-time hire.
+  </p>
+
+  <div class="svc-grid reveal" style="grid-template-columns:repeat(2,1fr);">
+    <div class="svc">
+      <div class="svc-icon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <div class="svc-pill">NXO Is</div>
+      <div class="svc-title">An Executive Technology Partner</div>
+      <ul class="svc-out is">
+        <li>An executive technology partner</li>
+        <li>Strategic leadership at the C-level</li>
+        <li>Vendor accountability, on your side of the table</li>
+        <li>Transformation guidance from strategy through delivery</li>
+      </ul>
+    </div>
+    <div class="svc">
+      <div class="svc-icon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#7B93B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+      <div class="svc-pill" style="color:var(--gray);opacity:1;">NXO Is Not</div>
+      <div class="svc-title">Not A Vendor Or Support Desk</div>
+      <ul class="svc-out isnot">
+        <li>An IT support company</li>
+        <li>A software development shop</li>
+        <li>An MSP managing tickets</li>
+        <li>A vendor reseller with products to push</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 2 — THE PROBLEM CEOs FACE
+══════════════════════════════════════════════════════ -->
+<section id="nxo-problem" style="background:var(--navy-mid);">
+  <div class="eyebrow reveal">The Reality</div>
+  <div class="rule reveal d1"></div>
+  <h2 class="reveal d1">You don't need a CTO. <em>You need CTO outcomes.</em></h2>
+  <p class="lead reveal d2">
+    We hear the same things from CEOs and founders, in almost every industry, almost every time.
+  </p>
+
+  <div class="pain-grid reveal">
+    <div class="pain-card"><div class="pain-q">"</div><div class="pain-text">My technology is becoming messy.</div></div>
+    <div class="pain-card"><div class="pain-q">"</div><div class="pain-text">We're wasting money on software.</div></div>
+    <div class="pain-card"><div class="pain-q">"</div><div class="pain-text">Our systems don't integrate.</div></div>
+    <div class="pain-card"><div class="pain-q">"</div><div class="pain-text">AI is everywhere but we don't know where to start.</div></div>
+    <div class="pain-card"><div class="pain-q">"</div><div class="pain-text">My IT vendor only fixes problems — nobody thinks strategically.</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 3 — THE NXO VIRTUAL CTO OFFICE MODEL
+══════════════════════════════════════════════════════ -->
+<section id="nxo-model">
+  <div class="eyebrow reveal">The Model</div>
+  <div class="rule reveal d1"></div>
+  <h2 class="reveal d1">Your Virtual <em>Chief Technology Office</em></h2>
+  <p class="lead reveal d2">
+    Four pillars, working together as one office structured around your business — not one person's opinion.
+  </p>
+
+  <div class="layers reveal" style="margin-bottom:32px;">
+    <div class="layer" style="--lc:#F59E0B">
+      <div class="l-num">PILLAR 01</div>
+      <div class="hex-ico">
+        <svg class="bg" viewBox="0 0 54 60"><polygon points="27,2 52,15 52,45 27,58 2,45 2,15" fill="rgba(245,158,11,.07)" stroke="#F59E0B" stroke-width="1.2"/></svg>
+        <div class="inn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      </div>
+      <div class="l-title">Strategic Leadership</div>
+      <div class="l-desc">Technology vision, digital roadmap, budgeting, and governance.</div>
+    </div>
+    <div class="layer" style="--lc:#60A5FA">
+      <div class="l-num">PILLAR 02</div>
+      <div class="hex-ico">
+        <svg class="bg" viewBox="0 0 54 60"><polygon points="27,2 52,15 52,45 27,58 2,45 2,15" fill="rgba(96,165,250,.07)" stroke="#60A5FA" stroke-width="1.2"/></svg>
+        <div class="inn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      </div>
+      <div class="l-title">Digital Transformation</div>
+      <div class="l-desc">AI strategy, ERP/CRM, automation, cloud, integration, and security.</div>
+    </div>
+    <div class="layer" style="--lc:#93C5FD">
+      <div class="l-num">PILLAR 03</div>
+      <div class="hex-ico">
+        <svg class="bg" viewBox="0 0 54 60"><polygon points="27,2 52,15 52,45 27,58 2,45 2,15" fill="rgba(147,197,253,.07)" stroke="#93C5FD" stroke-width="1.2"/></svg>
+        <div class="inn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      </div>
+      <div class="l-title">Vendor Management</div>
+      <div class="l-desc">Vendor evaluation, contract negotiation, procurement advisory.</div>
+    </div>
+    <div class="layer" style="--lc:#D4945A">
+      <div class="l-num">PILLAR 04</div>
+      <div class="hex-ico">
+        <svg class="bg" viewBox="0 0 54 60"><polygon points="27,2 52,15 52,45 27,58 2,45 2,15" fill="rgba(212,148,90,.07)" stroke="#D4945A" stroke-width="1.2"/></svg>
+        <div class="inn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4945A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
+      </div>
+      <div class="l-title">Technology PMO</div>
+      <div class="l-desc">Project governance, KPI tracking, risk management, reporting.</div>
+    </div>
+  </div>
+
+  <div class="acc reveal">
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-hd-l">
+          <div class="acc-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <span class="acc-ttl">Strategic Leadership — full scope</span>
+        </div>
+        <svg class="acc-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-bd"><div class="acc-body"><div class="acc-tags">
+        <span class="acc-tag">Technology Vision</span><span class="acc-tag">Digital Roadmap</span><span class="acc-tag">Technology Budgeting</span><span class="acc-tag">IT Governance</span>
+      </div></div></div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-hd-l">
+          <div class="acc-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <span class="acc-ttl">Digital Transformation — full scope</span>
+        </div>
+        <svg class="acc-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-bd"><div class="acc-body"><div class="acc-tags">
+        <span class="acc-tag">AI Strategy</span><span class="acc-tag">ERP/CRM Strategy</span><span class="acc-tag">Process Automation</span><span class="acc-tag">Enterprise Architecture</span><span class="acc-tag">Cloud Strategy</span><span class="acc-tag">System Integration</span><span class="acc-tag">Cybersecurity</span><span class="acc-tag">Scalability Planning</span>
+      </div></div></div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-hd-l">
+          <div class="acc-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <span class="acc-ttl">Vendor Management — full scope</span>
+        </div>
+        <svg class="acc-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-bd"><div class="acc-body"><div class="acc-tags">
+        <span class="acc-tag">Vendor Evaluation</span><span class="acc-tag">Contract Negotiation</span><span class="acc-tag">Procurement Advisory</span>
+      </div></div></div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-hd-l">
+          <div class="acc-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4945A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
+          <span class="acc-ttl">Technology PMO — full scope</span>
+        </div>
+        <svg class="acc-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-bd"><div class="acc-body"><div class="acc-tags">
+        <span class="acc-tag">Project Governance</span><span class="acc-tag">KPI Tracking</span><span class="acc-tag">Risk Management</span><span class="acc-tag">Executive Reporting</span>
+      </div></div></div>
+    </div>
+  </div>
+
+  <div class="nxo-note reveal">
+    <p>When you engage NXO, you don't get one person's opinion.<br>You get an entire technology office structured around your business.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 4 — EXECUTIVE REPORTING CADENCE
+══════════════════════════════════════════════════════ -->
+<section id="nxo-reporting" style="background:var(--navy-mid);">
+  <div class="eyebrow reveal">How We Report</div>
+  <div class="rule reveal d1"></div>
+  <h2 class="reveal d1">Clarity, <em>Not Tickets</em></h2>
+  <p class="lead reveal d2">A steady executive rhythm — not a ticket queue you have to chase.</p>
+
+  <div class="val-grid reveal">
+    <div class="val-card">
+      <div class="val-num">01</div>
+      <div class="val-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+      <div class="val-card-title">Monthly CEO Dashboard</div>
+      <div class="val-card-text">A single view of technology health, spend, and priorities — every month, without asking.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-num">02</div>
+      <div class="val-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <div class="val-card-title">Quarterly Technology Review</div>
+      <div class="val-card-text">A deeper look at progress against the roadmap, and what needs to change next.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-num">03</div>
+      <div class="val-card-icon"><svg viewBox="0 0 24 24"><path d="M2 3h20v14H2z"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div class="val-card-title">Board-Ready Presentations</div>
+      <div class="val-card-text">Technology updates written for your board, not for engineers.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-num">04</div>
+      <div class="val-card-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <div class="val-card-title">Technology Investment Reports</div>
+      <div class="val-card-text">Clear accounting of where technology dollars are going, and the return on them.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 5 — PRICING TIERS
+══════════════════════════════════════════════════════ -->
+<section id="nxo-pricing">
+  <div class="eyebrow reveal">Engagement Models</div>
+  <div class="rule reveal d1"></div>
+  <h2 class="reveal d1">Find Your <em>Fit</em></h2>
+  <p class="lead reveal d2">Three tiers, one principle: monthly retainers, not hourly bills.</p>
+
+  <div class="tier-grid reveal">
+    <div class="tier-card">
+      <div class="tier-name">NXO Essential</div>
+      <div class="tier-for">For businesses at a growth inflection point.</div>
+      <ul class="tier-feats">
+        <li>Fractional technology leadership</li>
+        <li>Strategic guidance</li>
+        <li>Vendor oversight</li>
+        <li>Monthly CEO dashboard</li>
+      </ul>
+      <a href="index.html#contact" class="btn-ghost">Find Your Fit</a>
+    </div>
+    <div class="tier-card featured">
+      <div class="tier-badge">Most Common Fit</div>
+      <div class="tier-name">NXO Growth</div>
+      <div class="tier-for">For scaling businesses.</div>
+      <ul class="tier-feats">
+        <li>Full virtual CTO engagement</li>
+        <li>Digital roadmap ownership</li>
+        <li>Transformation leadership</li>
+        <li>Project governance</li>
+        <li>Quarterly board reviews</li>
+      </ul>
+      <a href="index.html#contact" class="btn-primary">Find Your Fit</a>
+    </div>
+    <div class="tier-card">
+      <div class="tier-name">NXO Enterprise</div>
+      <div class="tier-for">For complex ecosystems.</div>
+      <ul class="tier-feats">
+        <li>Dedicated executive office</li>
+        <li>Full strategic and governance stack</li>
+        <li>Embedded with the leadership team</li>
+      </ul>
+      <a href="index.html#contact" class="btn-ghost">Find Your Fit</a>
+    </div>
+  </div>
+
+  <div class="nxo-note reveal">
+    <p>All engagements are monthly retainers.</p>
+    <p class="sub">We don't bill by the hour — we deliver executive decisions that move your business forward.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 6 — THE LANGUAGE WE USE
+══════════════════════════════════════════════════════ -->
+<section id="nxo-language" style="background:var(--navy-mid);">
+  <div class="eyebrow reveal">A Shift In Framing</div>
+  <div class="rule reveal d1"></div>
+  <h2 class="reveal d1">The Language <em>We Use</em></h2>
+  <p class="lead reveal d2">We talk in outcomes, not tickets — because that's how your board thinks about technology too.</p>
+
+  <div class="lang-list reveal">
+    <div class="lang-row">
+      <div class="lang-old">Website Development</div>
+      <div class="lang-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="lang-new">Digital Growth Infrastructure</div>
+    </div>
+    <div class="lang-row">
+      <div class="lang-old">ERP Implementation</div>
+      <div class="lang-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="lang-new">Business Process Transformation</div>
+    </div>
+    <div class="lang-row">
+      <div class="lang-old">Cloud Migration</div>
+      <div class="lang-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="lang-new">Enterprise Modernization</div>
+    </div>
+    <div class="lang-row">
+      <div class="lang-old">IT Support</div>
+      <div class="lang-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="lang-new">Technology Governance</div>
+    </div>
+    <div class="lang-row">
+      <div class="lang-old">AI Automation</div>
+      <div class="lang-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="lang-new">AI Strategy &amp; Execution</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 7 — CLOSING CTA
+══════════════════════════════════════════════════════ -->
+<section id="nxo-closing">
+  <div class="eyebrow reveal">Let's Talk</div>
+  <div class="rule reveal d1"></div>
+  <h2 class="reveal d1">Let's Talk About Where <em>Your Business Is Heading</em></h2>
+  <p class="lead reveal d2">No pitch decks. No technical jargon. Just an honest conversation about your technology direction.</p>
+  <a href="index.html#contact" class="btn-primary reveal d3">Schedule Your Strategy Session</a>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="fc">
+      <img src="assets/nuxpert-logo.jpg" alt="Nuxpert Tech Beez">
+      <p class="footer-tagline">Securely Transforming Digital Success.</p>
+      <p>A Nucli of Experts delivering secure, global-scale digital transformation — from strategy to infrastructure.</p>
+    </div>
+    <div class="fc">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#approach">Our Approach</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="nxo.html">NXO</a></li>
+        <li><a href="index.html#values">Values</a></li>
+        <li><a href="index.html#nexus">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Contact Us</h4>
+      <div class="fc-contact">
+        <a href="tel:+919686369907" class="fcc">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          +91 9686369907
+        </a>
+        <a href="mailto:info@nuxpert.com" class="fcc">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          info@nuxpert.com
+        </a>
+        <div style="margin-top:22px;">
+          <div class="social-label" style="margin-bottom:12px;">Follow Us</div>
+          <div class="social-row">
+            <a href="https://www.linkedin.com/company/nuxpert-techbeez" class="social-icon si-ig" style="width:36px;height:36px;font-size:14px;" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/@Nuxpert" class="social-icon si-yt" style="width:36px;height:36px;font-size:14px;" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://x.com/nuxpertTechbezz" class="social-icon si-x" style="width:36px;height:36px;font-size:14px;" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="fcc" style="cursor:default; align-items:flex-start; margin-top:4px;">
+          <svg viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span><strong style="display:block;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:3px;">Registered Office</strong>Unit 101, Oxford Towers,<br>Old Airport Road, HAL 2nd Stage,<br>Bangalore – 560008, India</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <p>© 2025 Nuxpert Tech Beez. All rights reserved.</p>
+    <p>Strategic Tech Expertise. Securely Transforming Digital Success.</p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/919686369907" target="_blank" rel="noopener noreferrer" aria-label="Contact Nuxpert Tech Beez on WhatsApp">
+  <span class="wa-label">Chat with us on WhatsApp</span>
+  <div class="wa-btn">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 2.667C8.637 2.667 2.667 8.637 2.667 16c0 2.348.636 4.646 1.843 6.667L2.667 29.333l6.865-1.802A13.267 13.267 0 0016.001 29.333c7.364 0 13.333-5.97 13.333-13.333 0-7.364-5.969-13.333-13.333-13.333zm0 24.267a11.001 11.001 0 01-5.61-1.537l-.402-.24-4.074 1.068 1.09-3.965-.262-.415a10.96 10.96 0 01-1.675-5.845c0-6.065 4.935-11 11-11s11 4.935 11 11-4.935 11-11 11zm6.03-8.232c-.33-.165-1.951-.962-2.254-1.072-.303-.11-.524-.165-.744.165-.22.33-.854 1.072-1.047 1.292-.193.22-.385.247-.715.082-.33-.165-1.393-.513-2.653-1.637-.98-.875-1.643-1.956-1.835-2.286-.193-.33-.02-.508.145-.672.149-.149.33-.385.494-.578.165-.193.22-.33.33-.55.11-.22.055-.413-.027-.578-.083-.165-.744-1.793-1.02-2.455-.268-.644-.54-.557-.744-.567l-.633-.011c-.22 0-.578.082-.881.413-.303.33-1.155 1.128-1.155 2.751s1.183 3.19 1.348 3.41c.165.22 2.328 3.554 5.643 4.983.789.34 1.405.543 1.885.695.792.252 1.513.216 2.083.131.635-.095 1.951-.797 2.227-1.567.276-.77.276-1.43.193-1.567-.082-.137-.303-.22-.633-.385z"/></svg>
+  </div>
+</a>
+
+<script>
+function toggleAcc(head) {
+  const item = head.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+document.getElementById('hbg').addEventListener('click', function() {
+  document.getElementById('nl').classList.toggle('open');
+});
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+window.addEventListener('load', () => {
+  document.querySelectorAll('#nxo-hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), i * 90);
+  });
+});
+</script>
+
+</body>
+</html>
